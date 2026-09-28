@@ -32,7 +32,7 @@ The Q3 roadmap commits exactly **6.0 engineer-weeks** across three high-leverage
 2. **Initiative #2: Application-Level Source Tracking & Referral Capture** — **2.0 engineer-weeks**  
    *Justification*: Referrals convert at 53.85% (7 hires / 13 apps) vs. 2.97% for Job Boards (7 hires / 236 apps), yet 24 applications have ambiguous referral attribution.
 3. **Initiative #3: Offer Lifecycle Guardrails & Metric Dashboard** — **1.5 engineer-weeks**  
-   *Justification*: Decided offer acceptance is 83.87% (26 of 31), proving the 72.22% crisis is an ATS reporting hygiene failure (4 unclosed pending offers past decision date).
+   *Justification*: Decided offer acceptance is 83.87% (26 of 31), showing that the reported 72.22% rate includes unresolved Pending offers and should be separated from the defined closed-offer acceptance metric (4 unclosed pending offers past decision date).
 
 **Total Allocation**: $2.5 + 2.0 + 1.5 = \mathbf{6.0\text{ engineer-weeks}}$ (100% capacity utilized).
 

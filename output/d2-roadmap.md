@@ -25,7 +25,7 @@
 - **Primary evidence / number justifying it**:
   - **`56.19%`** *(59 of 105 active applications are currently stranded on closed or filled requisitions).*
 - **Why this belongs in Q3**:
-  - Over half of Acme's active pipeline is ghost inventory. Before Acme attempts to scale sourcing or improve velocity, the core requisition lifecycle must function reliably. Cleaning this up immediately unburdens recruiters.
+  - 59 of 105 active applications are attached to Filled or Cancelled requisitions. Before Acme attempts to scale sourcing or improve velocity, the core requisition lifecycle must function reliably. Cleaning this up immediately unburdens recruiters.
 - **What success would look like**:
   - 0 active applications remaining on Filled or Cancelled requisitions.
   - 100% of requisitions automatically updating to Filled upon final offer acceptance.
@@ -57,18 +57,18 @@
 - **What to build**:
   - Expand the `Offers` table status schema to include terminal non-acceptance states: `Withdrawn` and `Rescinded` (currently only `Accepted`, `Declined`, `Pending`).
   - Automated offer staleness monitoring: flags offers where `Decision On` has passed or where $>14$ days have elapsed without resolution, prompting recruiters to update the status.
-  - Implement the D3 metric specification on the executive dashboard: displays **Closed Offer Acceptance Rate** ($26/31 = \mathbf{83.9\%}$) alongside an operational **Pending Offer Exposure** card (showing active vs. overdue pending offers).
+  - Implement the D3 metric specification on the executive dashboard: displays **Closed Offer Acceptance Rate** ($26/31 = \mathbf{83.87\%}$) alongside an operational **Pending Offer Exposure** card (showing active vs. overdue pending offers).
 - **Problem being solved**:
-  - The board of directors is alarmed by a reported "72%" offer acceptance rate. The audit proved that this 72% figure is an illusion caused by dividing 26 accepted offers by all 36 offers extended, treating 5 unclosed pending offers as rejections.
+  - The raw 72.22% rate includes 5 unresolved Pending offers in the denominator; the defined closed-offer acceptance rate is 83.87% (26/31).
   - 4 of the 5 pending offers have past decision dates extending back up to 7 months, and 1 candidate explicitly withdrew. Recruiters have no workflow forcing resolution.
 - **Target user**:
   - VP of People, Head of Talent, Executive Leadership, and Recruiters extending offers.
 - **Rough engineering size**:
   - **1.5 engineer-weeks** (Offers status schema expansion, scheduled cron task for offer staleness alerts, and dashboard UI metric card implementation).
 - **Primary evidence / number justifying it**:
-  - **`83.87%`** *(The verified Closed Offer Acceptance Rate on resolved offers, proving the offer stage is healthy and that the perceived 72% crisis is a reporting/hygiene defect).*
+  - **`83.87%`** *(The verified Closed Offer Acceptance Rate on resolved offers ($26/31$), showing that the raw 72.22% figure is driven by 5 unclosed pending offers).*
 - **Why this belongs in Q3**:
-  - It immediately resolves executive and board anxiety with verified data, prevents unclosed offers from corrupting future conversion metrics, and requires minimal engineering effort.
+  - It immediately clarifies executive and board reporting with verified data, prevents unclosed offers from skewing future conversion metrics, and requires minimal engineering effort.
 - **What success would look like**:
   - Executive dashboard displaying verified 83.87% Closed Offer Acceptance Rate.
   - Reduction of stale pending offers older than 14 days to 0.
@@ -94,7 +94,7 @@
 - **What we are explicitly not building**:
   - Automated candidate SMS/email nudging, mobile offer-signing portals, or accelerated closing workflows aimed at increasing candidate acceptance.
 - **Why**:
-  - True offer acceptance on resolved offers is already **83.87%** (and candidate-level acceptance is **85.71%**). There is no candidate drop-off crisis at the offer stage.
+  - True offer acceptance on resolved offers is **83.87%** (and candidate-level acceptance is **85.71%**), showing high candidate conversion on closed offers.
   - Review of the 5 declined offers reveals that candidate declinations were driven by **Counter Offers** (3), **Compensation** (1), and **Location** (1). Zero candidates declined due to software friction, delay in signing, or communication breakdown.
 - **Evidence / number supporting the decision**:
   - **`0 of 5`** *(Zero candidate offer declines attributed to workflow or signing friction; 60% declined due to counter-offers from current employers).*
@@ -122,7 +122,7 @@
 | :---: | :--- | :---: | :--- |
 | **#1** | **Requisition Lifecycle Automation & Cascade Dispositioning** | **2.5 engineer-weeks** | **56.19%** of active pipeline (59/105) stranded on closed/filled jobs |
 | **#2** | **Application-Level Source Tracking & Referral Capture** | **2.0 engineer-weeks** | **53.85%** referral conversion vs. 2.97% for job boards (18.1x efficiency) |
-| **#3** | **Offer Lifecycle Guardrails & Metric Dashboard** | **1.5 engineer-weeks** | **83.87%** true closed acceptance rate ($26/31$) disproving the 72% claim |
+| **#3** | **Offer Lifecycle Guardrails & Metric Dashboard** | **1.5 engineer-weeks** | **83.87%** defined closed acceptance rate ($26/31$) separating the 72.22% raw rate |
 | **TOTAL** | **Exact Q3 Engineering Budget** | **6.0 engineer-weeks** | **100% capacity utilized across 3 high-leverage fixes** |
 
 ---
@@ -135,8 +135,8 @@ In plain English, these three initiatives fit together as a single, unified oper
 [Top-of-Funnel]                     [Mid-Funnel Pipeline]                 [Bottom-of-Funnel]
 Initiative #2 (2.0 wks)             Initiative #1 (2.5 wks)               Initiative #3 (1.5 wks)
 Attribution & Referrals     ───►    Cascade Dispositioning        ───►    Offer Guardrails & Metric
-Capitalize on high-yield            Purge 56% ghost pipeline &            Defuse board alarm (84% rate) &
-referrals (54% conversion)          keep reqs clean automatically         prevent unclosed zombie offers
+Capitalize on high-yield            Resolve 56% stranded pipeline &       Surface closed rate (84%) &
+referrals (54% conversion)          keep reqs clean automatically         prevent unclosed pending offers
 ```
 
 1. **Fixing the Core Foundation First (Mid-Funnel — Initiative #1, 2.5 wks)**:

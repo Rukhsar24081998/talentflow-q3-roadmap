@@ -34,7 +34,7 @@ We are allocating our exact 6.0 engineer-week budget across three high-leverage 
 
 ## What We're NOT Doing
 - **No Job-Board Commercial Integrations in Q3**: Job boards and referrals are tied in hire count (7 hires each), but job boards show lower observed conversion (2.97% vs. 53.85%). With 56.19% of active applications attached to filled or cancelled requisitions, resolving pipeline hygiene is a higher operational priority in Q3 than adding top-of-funnel integrations.
-- **No Candidate Offer-Nudging / E-Sign Acceleration in Q3**: Closed offer acceptance is 83.87% (26 of 31). Candidate declinations (5 total) were attributed to counter-offers (3), compensation (1), and location (1), with zero records indicating workflow, signing, or communication delays.
+- **No Candidate Offer-Nudging / E-Sign Acceleration in Q3**: Closed offer acceptance is 83.87% (26 of 31). Five recorded declines were counter-offers (3), compensation (1), and location (1); none of the recorded decline reasons identify signing or workflow friction.
 - **No AI Resume Scoring in Q3**: While 7 of 26 hires (26.92%) had at least one negative interview recommendation, all 7 negative recommendations originated from a single interviewer (28 of 30 interview records had a negative recommendation; 2 had no recommendation). The data does not establish an organizational disregard of interview scorecards; interview evaluation data requires better calibration and consistency before automating candidate evaluation.
 
 ---

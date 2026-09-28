@@ -47,9 +47,11 @@ The arithmetic behind the VP's stated claim (quoted as 26.9%) is reproducible fr
 
 ### Alternative interpretation(s)
 
-1. **Unique Individuals Hired (Deduplicated Person Basis)**:
-   - Two candidates were hired twice in the dataset (Vinay Khanna and Sneha Shah), both originating from the "Referral" channel.
-   - On a unique individual basis (24 total people hired):
+1. **Duplicate Profiles and Verified Reapplication**:
+   - The dataset contains 6 duplicate candidate pairs sharing identical identifying fields.
+   - These establish duplicate/split candidate records, not proven double hires.
+   - The Vinay Khanna case was specifically verified and does NOT establish a double hire; evidence is consistent with legitimate reapplication/rehire workflow (two applications 5 months apart for Support Specialist).
+   - On a unique individual basis across distinct candidate entities (24 individuals):
      - **Job Board**: 7 unique individuals / 24 = **29.17%**
      - **Referral**: 5 unique individuals / 24 = **20.83%**
      - **Career Site**: 5 unique individuals / 24 = **20.83%**
@@ -97,7 +99,7 @@ The VP asserts that offer acceptance has deteriorated to ~72%, alarming the boar
 - **Raw Formula**:
   $$\text{Raw Offer Acceptance Rate} = \frac{26}{36} = \mathbf{72.22\%} \quad (\approx 72\%)$$
 
-The arithmetic matches the VP's stated number, but the metric construction is fundamentally invalid.
+The arithmetic matches the VP's stated number, but the metric construction conflates open deliberation and unclosed status with candidate rejections.
 
 ---
 
@@ -105,16 +107,15 @@ The arithmetic matches the VP's stated number, but the metric construction is fu
 
 1. **The Denominator Trap (Treating Pending Offers as Rejections)**:
    - The VP included **all 36 offers ever created**, treating **5 Pending Offers** as failed conversions.
-   - On resolved offers where a candidate decision has been reached (26 Accepted + 5 Declined):
+   - On decided offers where a candidate decision has been reached (26 Accepted + 5 Declined):
      $$\text{True Closed Offer Acceptance Rate} = \frac{26}{26 + 5} = \frac{26}{31} = \mathbf{83.87\%}$$
-   - **83.87%** is a healthy offer acceptance rate on decided offers ($26/31$). There is no candidate drop-off crisis.
-2. **The 5 "Pending" Offers Are Stale Database Hygiene Artifacts**:
-   - Forensic inspection reveals that none of the 5 pending offers represent actively open candidate deliberations:
-     - **OFF-00002** (`recUzh2Vj5NyAPwRO`): Offered 2026-01-17, Decision On 2026-02-02 (7+ months stale). Application explicitly states candidate **"Withdrew"**. The offer remained "Pending" because the Offers schema lacks a `Withdrawn` status.
-     - **OFF-00013** (`recMJLFhIqQcUh6A9`): Decision On 2026-07-05 (>2 months stale); req is **On Hold**.
-     - **OFF-00020** (`rec5GeU3frNNkZrws`): Decision On 2026-08-15; req is **On Hold**.
-     - **OFF-00007** (`recQq6ghz7ksCfsKV`): Decision On 2026-08-20; candidate was already hired in 2025.
-     - **OFF-00021** (`rec0bHaqPWKwbh666`): Offered 2026-05-02; start date was 2026-07-02 (>2 months ago); outcome unrecorded.
+   - On decided offers ($26/31$), the defined closed offer acceptance rate is **83.87%** (26 accepted / 31 decided). The raw 72.22% rate includes 5 unresolved Pending offers in the denominator.
+2. **Classification of the 5 Pending Offers**:
+   - Inspection of the 5 pending offers (4 having past Decision On dates) reveals:
+     - **1 candidate withdrawal / missing Withdrawn state**: OFF-00002 (`recUzh2Vj5NyAPwRO`) application explicitly records candidate "Withdrew" on 2026-02-02, but the Offers schema lacks a `Withdrawn` status.
+     - **2 offers associated with On Hold requisitions and stale decision dates**: OFF-00013 (`recMJLFhIqQcUh6A9`, Decision On 2026-07-05) and OFF-00020 (`rec5GeU3frNNkZrws`, Decision On 2026-08-15).
+     - **1 pending offer with a past decision date / status inconsistency**: OFF-00007 (`recQq6ghz7ksCfsKV`, Decision On 2026-08-20, candidate already had a previous accepted record).
+     - **1 genuinely unresolved / abandoned outcome**: OFF-00021 (`rec0bHaqPWKwbh666`, Offered 2026-05-02, Proposed Start Date 2026-07-02, final outcome unrecorded).
 3. **Decline Reasons Show Zero Product Friction**:
    - Of the 5 declined offers, reasons provided are: **Counter Offer** (3, 60%), **Compensation** (1, 20%), and **Location** (1, 20%).
    - Candidates are declining due to compensation leverage and competing counter-offers, not because of TalentFlow's offer delivery, signing experience, or workflow friction.
@@ -151,9 +152,9 @@ $$\mathbf{83.87\%}$$
 ---
 
 ### Product implication
-Allocating engineering capacity to candidate-facing offer acceleration misdirects resources away from the primary data-quality defect. At 83.87% closed acceptance, candidate decision outcomes are healthy.
+Allocating engineering capacity to candidate-facing offer acceleration misdirects resources away from the primary data-quality defect. On decided offers, closed acceptance is 83.87% (26 of 31).
 
-The board’s anxiety is entirely caused by metric miscalculation: recruiters failing to close out abandoned/withdrawn offers, which depresses the raw ratio. The appropriate solution is not candidate-facing software, but **metric instrumentation (D3)** and **automated offer expiration / status validation** to ensure pending offers cannot linger past their decision or start dates.
+The reported 72.22% raw rate includes 5 unresolved pending offers in the denominator. The appropriate solution is not candidate-facing software, but **metric instrumentation (D3)** and **automated offer expiration / status validation** to ensure pending offers are excluded from the closed metric and surfaced separately.
 
 ---
 
@@ -162,7 +163,7 @@ The board’s anxiety is entirely caused by metric miscalculation: recruiters fa
 | Claim | Raw Number | Key Issue | Verdict | Decision Number | Primary Rationale |
 | :--- | :---: | :--- | :---: | :---: | :--- |
 | **Claim 1: Job Boards** | **26.92%** | Tied with Referrals (7 hires each); converts at only 2.97% vs. 53.85% for Referrals; referral attribution ambiguous (24 applications). | **DON'T BUILD IT** | **2.97%** | Job boards and referrals are tied in hires (7 each), but job boards show lower observed conversion (2.97% vs 53.85%). Given existing pipeline hygiene backlog, integrations are a lower Q3 priority. |
-| **Claim 2: Offer Acceptance** | **72.22%** | Denominator includes 5 stale/withdrawn pending offers. True closed acceptance is 83.87%. | **DON'T BUILD IT** | **83.87%** | Offer stage is healthy (83.87% closed). The perceived drop is an ATS hygiene failure, not candidate rejection. |
+| **Claim 2: Offer Acceptance** | **72.22%** | Denominator includes 5 pending offers (4 with past decision dates). Defined closed acceptance is 83.87% (26/31). | **DON'T BUILD IT** | **83.87%** | On decided offers, closed acceptance is 83.87%. Pending offers are excluded from the closed metric and surfaced separately. |
 
 ---
 
@@ -181,9 +182,9 @@ To maintain complete objectivity and rigor, all assertions in D1 are explicitly 
 - 3 applications resulting in hires have an employee in `Referred By` but non-referral `Candidate.Source`.
 
 ### INTERPRETATION (Analytical Conclusions Derived from Facts)
-- The VP's 72% claim was derived by including unresolved pending offers in the denominator.
+- The VP's 72.22% claim was derived by including unresolved pending offers in the denominator.
 - Job boards do not lead "by a wide margin"; they are tied with referrals in output and significantly lag in quality.
-- The 5 pending offers represent administrative neglect (failure to disposition terminal outcomes) rather than ongoing candidate negotiations.
+- The 5 pending offers include unclosed terminal outcomes and on-hold requisitions rather than ongoing candidate negotiations.
 - Allocating Q3 engineering capacity to job board integrations or offer acceleration would fail to address Acme's actual operational bottlenecks.
 
 ### ASSUMPTION (Plausible Hypotheses Requiring Stakeholder Confirmation)
