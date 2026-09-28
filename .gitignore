@@ -1,0 +1,23 @@
+# Environment and Credentials
+.env
+.env.local
+.env.*.local
+!.env.example
+
+# Raw Data Cache
+data/raw/
+
+# Credential-bearing or debug logs
+*.log
+logs/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# OS specific
+.DS_Store
+Thumbs.db
+submission/
