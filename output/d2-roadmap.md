@@ -60,7 +60,7 @@
   - Implement the D3 metric specification on the executive dashboard: displays **Closed Offer Acceptance Rate** ($26/31 = \mathbf{83.87\%}$) alongside an operational **Pending Offer Exposure** card (showing active vs. overdue pending offers).
 - **Problem being solved**:
   - The raw 72.22% rate includes 5 unresolved Pending offers in the denominator; the defined closed-offer acceptance rate is 83.87% (26/31).
-  - 4 of the 5 pending offers have past decision dates extending back up to 7 months, and 1 candidate explicitly withdrew. Recruiters have no workflow forcing resolution.
+  - 4 of the 5 pending offers have past Decision On dates, and 1 application explicitly records candidate withdrawal. Recruiters have no workflow forcing resolution.
 - **Target user**:
   - VP of People, Head of Talent, Executive Leadership, and Recruiters extending offers.
 - **Rough engineering size**:
@@ -95,9 +95,9 @@
   - Automated candidate SMS/email nudging, mobile offer-signing portals, or accelerated closing workflows aimed at increasing candidate acceptance.
 - **Why**:
   - True offer acceptance on resolved offers is **83.87%** (and candidate-level acceptance is **85.71%**), showing high candidate conversion on closed offers.
-  - Review of the 5 declined offers reveals that candidate declinations were driven by **Counter Offers** (3), **Compensation** (1), and **Location** (1). Zero candidates declined due to software friction, delay in signing, or communication breakdown.
+  - Review of the 5 declined offers reveals that candidate declinations were driven by **Counter Offers** (3), **Compensation** (1), and **Location** (1). None of the recorded decline reasons identify signing or workflow friction.
 - **Evidence / number supporting the decision**:
-  - **`0 of 5`** *(Zero candidate offer declines attributed to workflow or signing friction; 60% declined due to counter-offers from current employers).*
+  - **`0 of 5`** *(None of the 5 recorded offer decline reasons identify signing or workflow friction; 60% declined due to counter-offers from current employers).*
 - **What would need to change to reconsider**:
   - If verified closed offer acceptance falls significantly below 80%, with documented exit data indicating candidate drop-out during the signing process.
 
@@ -140,9 +140,9 @@ referrals (54% conversion)          keep reqs clean automatically         preven
 ```
 
 1. **Fixing the Core Foundation First (Mid-Funnel — Initiative #1, 2.5 wks)**:
-   - Acme's database proves that their recruiting operations cannot maintain pipeline hygiene manually. More than half of their active candidates are attached to closed jobs, and open jobs remain unclosed after being filled. Building automated cascade dispositioning immediately resolves stranded active applications, ensuring recruiters only spend time on viable candidates for open headcount.
+   - The dataset shows a substantial requisition-lifecycle backlog: 59 of 105 active applications are attached to Filled or Cancelled requisitions, indicating a need for stronger requisition lifecycle controls. More than half of active candidates are attached to closed jobs, and open jobs remain unclosed after being filled. Building automated cascade dispositioning immediately resolves stranded active applications, ensuring recruiters only spend time on viable candidates for open headcount.
 2. **Fueling the Right Source (Top-of-Funnel — Initiative #2, 2.0 wks)**:
-   - Once the pipeline is clean, Acme needs hiring output. Rather than caving to the VP's demand to pull more low-converting job board resumes (which convert at only 2.97%), TalentFlow shifts focus to Acme's most potent hiring channel: Employee Referrals (converting at 53.85%). Fixing the attribution schema and providing a clean referral workflow gives Acme high-quality candidate volume that recruiters can actually close.
+   - Once the pipeline is clean, Acme needs hiring output. Rather than focusing on low-converting job board resumes (which convert at only 2.97%), TalentFlow shifts focus to the highest-converting channel in the dataset: Employee Referrals (converting at 53.85%). Fixing the attribution schema and providing a clean referral workflow supports candidate tracking for this channel.
 3. **Restoring Executive Trust & Hygiene (Bottom-of-Funnel — Initiative #3, 1.5 wks)**:
    - At the bottom of the funnel, the raw 72.22% offer acceptance figure reflects unclosed pending offers rather than candidate drop-off. Implementing the D3 metric specification on the executive dashboard provides leadership clarity by presenting the verified 83.87% closed acceptance rate. Adding offer expiration guardrails prevents unclosed offers from lingering in the future.
 
@@ -159,12 +159,12 @@ Together, these three initiatives utilize **exactly 6.0 engineer-weeks**, direct
 - Job Boards produced 7 hires from 236 applications (2.97% conversion rate).
 - On closed offers, 26 were accepted and 5 declined (83.87% acceptance rate).
 - 4 of 5 pending offers have decision dates in the past; 1 application explicitly notes candidate withdrawal.
-- 0 of 5 offer declines cite software, signing, or communication friction.
+- None of the 5 recorded offer decline reasons identify signing or workflow friction.
 - 7 of 26 hires had negative interview recommendations (`Strong No Hire` or `No Hire`).
 - The three proposed build initiatives total exactly $2.5 + 2.0 + 1.5 = 6.0$ engineer-weeks.
 
 ### INTERPRETATION (Analytical Conclusions Derived from Facts)
-- Acme recruiters are overloaded by resume volume, leading to failure to disposition candidates on closed requisitions.
+- The dataset shows a substantial requisition-lifecycle backlog, with candidates remaining in active stages on closed requisitions.
 - Expanding job board volume prior to establishing pipeline hygiene adds top-of-funnel volume where the observed conversion rate is 2.97%.
 - The VP's 72.22% claim is an artifact of unclosed pending offers rather than candidate dissatisfaction.
 - Sourcing attribution stored at the candidate level is technically inadequate for tracking repeat applicant journeys.

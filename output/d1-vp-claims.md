@@ -116,9 +116,8 @@ The arithmetic matches the VP's stated number, but the metric construction confl
      - **2 offers associated with On Hold requisitions and stale decision dates**: OFF-00013 (`recMJLFhIqQcUh6A9`, Decision On 2026-07-05) and OFF-00020 (`rec5GeU3frNNkZrws`, Decision On 2026-08-15).
      - **1 pending offer with a past decision date / status inconsistency**: OFF-00007 (`recQq6ghz7ksCfsKV`, Decision On 2026-08-20, candidate already had a previous accepted record).
      - **1 genuinely unresolved / abandoned outcome**: OFF-00021 (`rec0bHaqPWKwbh666`, Offered 2026-05-02, Proposed Start Date 2026-07-02, final outcome unrecorded).
-3. **Decline Reasons Show Zero Product Friction**:
-   - Of the 5 declined offers, reasons provided are: **Counter Offer** (3, 60%), **Compensation** (1, 20%), and **Location** (1, 20%).
-   - Candidates are declining due to compensation leverage and competing counter-offers, not because of TalentFlow's offer delivery, signing experience, or workflow friction.
+3. **Recorded Decline Reasons**:
+   - Of the 5 declined offers, the recorded reasons are Counter Offer (3), Compensation (1), and Location (1). None of the recorded decline reasons identify signing or workflow friction.
 
 ---
 
@@ -141,7 +140,7 @@ The arithmetic matches the VP's stated number, but the metric construction confl
 ### Verdict
 **DON'T BUILD IT**
 
-*(Strategic Direction: Do not build candidate offer-acceleration features, e-sign nudges, or offer portal redesigns. The ~72% number is a data-hygiene artifact, not a conversion problem.)*
+*(Strategic Direction: Do not build candidate offer-acceleration features, e-sign nudges, or offer portal redesigns. The raw 72.22% rate includes 5 unresolved Pending offers in the denominator; the defined closed-offer acceptance rate is 83.87%.)*
 
 ---
 
@@ -189,5 +188,5 @@ To maintain complete objectivity and rigor, all assertions in D1 are explicitly 
 
 ### ASSUMPTION (Plausible Hypotheses Requiring Stakeholder Confirmation)
 - It is assumed that Acme intends `Candidate.Source` to represent original first-touch acquisition, while `Application.Referred By` represents internal employee endorsements.
-- It is assumed that the candidates associated with stale pending offers (e.g. Manish Singh, Jatin Sharma) are not currently deliberating active offers and have either withdrawn, ghosted, or had their requisitions frozen.
+- It is assumed that the candidates associated with stale pending offers (e.g. Manish Singh, Jatin Sharma) are not currently deliberating active offers and have either withdrawn or had their requisitions frozen.
 - It is assumed that the board of directors would be satisfied if shown the true closed acceptance rate (83.87%) accompanied by proper metric instrumentation.

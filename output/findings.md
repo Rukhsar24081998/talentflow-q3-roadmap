@@ -39,12 +39,12 @@ To adhere strictly to senior product management standards and prevent unjustifie
    - None of these 6 pairs represent simultaneous active employment.
 3. **The Vinay Khanna Case is Not Double Hiring**:
    - Candidate `rec4TPTco4kDfU2DJ` (Vinay Khanna) submitted two applications for Support Specialist 5 months apart (Jan 2026 and Jun 2026), each with distinct interviews and offers.
-   - The data proves two sequential accepted offer events for one person; it does not prove concurrent active employment or fraudulent payroll duplication.
+   - The data shows two sequential accepted offer events for one person; it does not establish concurrent active employment or fraudulent payroll duplication.
 4. **Active Applications on Inactive Requisitions**:
-   - We describe the 59 applications precisely as *"applications attached to Filled or Cancelled requisitions"*, rather than assuming all candidates are definitively "ghosts".
-   - The data proves that the ATS lacks cascade-dispositioning logic, leaving active records attached to closed reqs.
+   - We describe the 59 applications precisely as *"applications attached to Filled or Cancelled requisitions"*, rather than assuming candidate unresponsiveness.
+   - The data shows that active application records remain attached to closed requisitions without automated cascade dispositioning.
 5. **Interview Recommendations Trace to One Outlier Interviewer**:
-   - The 7 negative interview recommendations among hires do **not** prove that Acme culturally ignores its evaluation process.
+   - The 7 negative interview recommendations among hires do **not** establish that Acme culturally ignores its evaluation process.
    - 100% of these negative ratings (7 of 7) were submitted by a single interviewer (Rakesh Sethi); across 30 interview records, Rakesh Sethi had 28 negative recommendations and 2 records with no recommendation. In 2 cases, another interviewer submitted a positive rating (`Hire` 4.2, `Strong Hire` 4.5).
 6. **No External Benchmarks or Unverified Causal Inventions**:
    - Every metric reported above is derived directly and reproducibly from the raw dataset.
